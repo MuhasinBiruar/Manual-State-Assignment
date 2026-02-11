@@ -4,8 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-    
+    <form class="flex flex-row flex-wrap gap-4">  
+        <div>
+        <h1 class="text-2xl font-bold mb-4">Student Type</h1>
+        <select class="border border-gray-300 rounded-md p-2">
+            <option value="" disabled selected style="color: rgb(144, 161, 185);">-- Select Student Type --</option>
+            <option value="New Student">New Student</option>
+            <option value="Transferee">Transferee</option>
+        </select>
+        </div>
+
+        <div>
+        <h1 class="text-2xl font-bold mb-4 mt-4">Religion</h1>
+        <select class="border border-gray-300 rounded-md p-2">
+            <option value="" disabled selected style="color: rgb(144, 161, 185);">-- Select Religion --</option>
+            <option value="Roman Catholic">Roman Catholic</option><option value="Christianity">Christianity</option>
+            <option value="Islam">Islam</option><option value="Hinduism">Hinduism</option>
+            <option value="Buddhism">Buddhism</option><option value="Judaism">Judaism</option>
+            <option value="Atheism">Atheism</option>
+            <option value="Agnosticism">Agnosticism</option>
+            <option value="Other">Other</option>
+        </select>
+        </div>
+
+        <div>
+        <h1 class="text-2xl font-bold mb-4 mt-4">Civil Status</h1>
+        <select class="border border-gray-300 rounded-md p-2">
+            <option value="" disabled selected style="color: rgb(144, 161, 185);">-- Select Civil Status --</option>
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+            <option value="Widowed">Widowed</option>
+            <option value="Separated">Separated</option>
+            <option value="Annulled">Annulled</option>
+            <option value="Divorced">Divorced</option>
+        </select>
+        </div>
+    </form>
 </body>
 </html>
