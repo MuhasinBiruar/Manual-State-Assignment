@@ -6,8 +6,11 @@
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <form class="flex flex-row flex-wrap gap-50 p-2">  
+<body class="p-4 w-screen h-screen">
+    <h1 class="text-3xl font-bold mb-4 mt-4">Personal Information</h1>
+
+    <!-- Type, Religion, Civil Status -->
+    <form class="flex flex-row flex-wrap gap-x-50 gap-y-5 gap p-4">
         <div class="w-[25%]">
         <h1 class="text-2xl font-bold mb-4 mt-4">Student Type</h1>
         <select class="border border-gray-300 rounded-md p-2 w-full">
@@ -41,6 +44,42 @@
             <option value="Annulled">Annulled</option>
             <option value="Divorced">Divorced</option>
         </select>
+        </div>
+
+        <!-- Full Name, Birth & Contact Info -->
+        <div class="w-[25%] ">
+        <h1 class="text-2xl font-bold mb-4 mt-4">First Name</h1>
+        <input name="firstname" required="" type="text" id="firstname" class="border border-gray-300 rounded-md p-2 w-full" value="">
+        </div>
+
+        <div class="w-[25%] ">
+        <h1 class="text-2xl font-bold mb-4 mt-4">Middle Name</h1>
+        <input name="middlename" placeholder="Leave blank if none" type="text" id="middlename" class="border border-gray-300 rounded-md p-2 w-full" value="">
+        </div>
+
+        <div class="w-[25%] ">
+        <h1 class="text-2xl font-bold mb-4 mt-4">Last Name</h1>
+        <input name="lastname" required="" type="text" id="lastname" class="border border-gray-300 rounded-md p-2 w-full" value="">
+        </div>
+
+        <div class="w-[25%] ">
+        <h1 class="text-2xl font-bold mb-4 mt-4">Suffix</h1>
+        <input name="suffix" placeholder="Jr., Sr., I, II, etc. (Leave blank if none)" type="text" id="suffix" class="border border-gray-300 rounded-md p-2 w-full" value="">
+        </div>
+
+        <div class="w-[25%] ">
+        <h1 class="text-2xl font-bold mb-4 mt-4">Contact Number</h1>
+        <input name="contact" placeholder="e.g. 09273992923" required="" type="text" id="contact" class="border border-gray-300 rounded-md p-2 w-full" value=""/>
+        </div>
+
+        <div class="w-[25%] ">
+        <h1 class="text-2xl font-bold mb-4 mt-4">Contact Number</h1>
+        <input name="contact" placeholder="e.g. 09273992923" required="" type="text" id="contact" class="border border-gray-300 rounded-md p-2 w-full" value=""/>
+        </div>
+
+        <div class="w-[25%] ">
+        <h1 class="text-2xl font-bold mb-4 mt-4">Birth Date</h1>
+        <input type="date" placeholder="MM-DD-YYYY" class="border border-gray-300 rounded-md p-2 w-full" required="" value=""/>
         </div>
     </form>
 </body>
