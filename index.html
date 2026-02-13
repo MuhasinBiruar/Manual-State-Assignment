@@ -1,86 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+
 <body class="p-4 w-screen h-screen">
     <h1 class="text-3xl font-bold mb-4 mt-4">Personal Information</h1>
 
     <!-- Type, Religion, Civil Status -->
-    <form class="flex flex-row flex-wrap gap-x-50 gap-y-5 gap p-4">
+    <form id="personalInfoForm" class="flex flex-row flex-wrap gap-x-50 gap-y-5 gap p-4" novalidate>
         <div class="w-[25%]">
-        <h1 class="text-2xl font-bold mb-4 mt-4">Student Type</h1>
-        <select class="border border-gray-300 rounded-md p-2 w-full">
-            <option value="" disabled selected style="color: rgb(144, 161, 185);">-- Select Student Type --</option>
-            <option value="New Student">New Student</option>
-            <option value="Transferee">Transferee</option>
-        </select>
+            <h1 class="text-2xl font-bold mb-4 mt-4">Student Type</h1>
+            <span id="studentTypeError" class="text-red-500 text-sm"></span>
+            <select name="studentType" class="border border-gray-300 rounded-md p-2 w-full" >
+                <option value="" disabled selected style="color: rgb(144, 161, 185);">-- Select Student Type --</option>
+                <option value="New Student">New Student</option>
+                <option value="Transferee">Transferee</option>
+            </select>
         </div>
 
         <div class="w-[25%]">
-        <h1 class="text-2xl font-bold mb-4 mt-4">Religion</h1>
-        <select class="border border-gray-300 rounded-md p-2 w-full">
-            <option value="" disabled selected style="color: rgb(144, 161, 185);">-- Select Religion --</option>
-            <option value="Roman Catholic">Roman Catholic</option><option value="Christianity">Christianity</option>
-            <option value="Islam">Islam</option><option value="Hinduism">Hinduism</option>
-            <option value="Buddhism">Buddhism</option><option value="Judaism">Judaism</option>
-            <option value="Atheism">Atheism</option>
-            <option value="Agnosticism">Agnosticism</option>
-            <option value="Other">Other</option>
-        </select>
+            <h1 class="text-2xl font-bold mb-4 mt-4">Religion</h1>
+            <span id="religionError" class="text-red-500 text-sm"></span>
+            <select name="religion" class="border border-gray-300 rounded-md p-2 w-full" required>
+                <option value="" disabled selected style="color: rgb(144, 161, 185);">-- Select Religion --</option>
+                <option value="Roman Catholic">Roman Catholic</option>
+                <option value="Christianity">Christianity</option>
+                <option value="Islam">Islam</option>
+                <option value="Hinduism">Hinduism</option>
+                <option value="Buddhism">Buddhism</option>
+                <option value="Judaism">Judaism</option>
+                <option value="Atheism">Atheism</option>
+                <option value="Agnosticism">Agnosticism</option>
+                <option value="Other">Other</option>
+            </select>
         </div>
 
         <div class="w-[25%]">
-        <h1 class="text-2xl font-bold mb-4 mt-4">Civil Status</h1>
-        <select class="border border-gray-300 rounded-md p-2 w-full">
-            <option value="" disabled selected style="color: rgb(144, 161, 185);">-- Select Civil Status --</option>
-            <option value="Single">Single</option>
-            <option value="Married">Married</option>
-            <option value="Widowed">Widowed</option>
-            <option value="Separated">Separated</option>
-            <option value="Annulled">Annulled</option>
-            <option value="Divorced">Divorced</option>
-        </select>
+            <h1 class="text-2xl font-bold mb-4 mt-4">Civil Status</h1>
+            <span id="civilStatusError" class="text-red-500 text-sm"></span>
+            <select name="civilStatus" class="border border-gray-300 rounded-md p-2 w-full" required>
+                <option value="" disabled selected style="color: rgb(144, 161, 185);">-- Select Civil Status --</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Widowed">Widowed</option>
+                <option value="Separated">Separated</option>
+                <option value="Annulled">Annulled</option>
+                <option value="Divorced">Divorced</option>
+            </select>
         </div>
 
         <!-- Full Name, Birth & Contact Info -->
         <div class="w-[25%] ">
-        <h1 class="text-2xl font-bold mb-4 mt-4">First Name</h1>
-        <input name="firstname" required="" type="text" id="firstname" class="border border-gray-300 rounded-md p-2 w-full" value="">
+            <h1 class="text-2xl font-bold mb-4 mt-4">First Name</h1>
+            <span id="firstNameError" class="text-red-500 text-sm"></span>
+            <input name="firstName" required="" type="text" id="firstName"
+                class="border border-gray-300 rounded-md p-2 w-full" value=""/>
         </div>
 
         <div class="w-[25%] ">
-        <h1 class="text-2xl font-bold mb-4 mt-4">Middle Name</h1>
-        <input name="middlename" placeholder="Leave blank if none" type="text" id="middlename" class="border border-gray-300 rounded-md p-2 w-full" value="">
+            <h1 class="text-2xl font-bold mb-4 mt-4">Middle Name</h1>
+            <input name="middleName" placeholder="Leave blank if none" type="text" id="middlename"
+                class="border border-gray-300 rounded-md p-2 w-full" value=""/>
         </div>
 
         <div class="w-[25%] ">
-        <h1 class="text-2xl font-bold mb-4 mt-4">Last Name</h1>
-        <input name="lastname" required="" type="text" id="lastname" class="border border-gray-300 rounded-md p-2 w-full" value="">
+            <h1 class="text-2xl font-bold mb-4 mt-4">Last Name</h1>
+            <span id="lastNameError" class="text-red-500 text-sm"></span>
+            <input name="lastName" required="" type="text" id="lastname"
+                class="border border-gray-300 rounded-md p-2 w-full" value="" required />
         </div>
 
         <div class="w-[25%] ">
-        <h1 class="text-2xl font-bold mb-4 mt-4">Suffix</h1>
-        <input name="suffix" placeholder="Jr., Sr., I, II, etc. (Leave blank if none)" type="text" id="suffix" class="border border-gray-300 rounded-md p-2 w-full" value="">
+            <h1 class="text-2xl font-bold mb-4 mt-4">Suffix</h1>
+            <input name="suffix" placeholder="Jr., Sr., I, II, etc. (Leave blank if none)" type="text" id="suffix"
+                class="border border-gray-300 rounded-md p-2 w-full" value="">
         </div>
 
         <div class="w-[25%] ">
-        <h1 class="text-2xl font-bold mb-4 mt-4">Contact Number</h1>
-        <input name="contact" placeholder="e.g. 09273992923" required="" type="text" id="contact" class="border border-gray-300 rounded-md p-2 w-full" value=""/>
+            <h1 class="text-2xl font-bold mb-4 mt-4">Contact Number</h1>
+            <span id="contactNumberError" class="text-red-500 text-sm"></span>
+            <input name="contactNumber" placeholder="e.g. 09273992923" required="" type="text" id="contact"
+                class="border border-gray-300 rounded-md p-2 w-full" value="" />
         </div>
 
         <div class="w-[25%] ">
-        <h1 class="text-2xl font-bold mb-4 mt-4">Contact Number</h1>
-        <input name="contact" placeholder="e.g. 09273992923" required="" type="text" id="contact" class="border border-gray-300 rounded-md p-2 w-full" value=""/>
+            <h1 class="text-2xl font-bold mb-4 mt-4">Birth Date</h1>
+            <span id="birthDateError" class="text-red-500 text-sm"></span>
+            <input name="birthDate" type="date" placeholder="MM-DD-YYYY" class="border border-gray-300 rounded-md p-2 w-full" required=""
+                value="" />
         </div>
 
         <div class="w-[25%] ">
-        <h1 class="text-2xl font-bold mb-4 mt-4">Birth Date</h1>
-        <input type="date" placeholder="MM-DD-YYYY" class="border border-gray-300 rounded-md p-2 w-full" required="" value=""/>
+            <h1 class="text-2xl font-bold mb-4 mt-4">Sex</h1>
+            <span id="sexError" class="text-red-500 text-sm"></span>
+            <select name="sex" required="" id="sex" class="border border-gray-300 rounded-md p-2 w-full">
+                <option value="" disabled selected style="color: rgb(144, 161, 185);">-- Select Sex --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
         </div>
+
+        <div class="w-[25%] ">
+            <h1 class="text-2xl font-bold mb-4 mt-4">Email Address</h1>
+            <span id="emailAddressError" class="text-red-500 text-sm"></span>
+            <input name="emailAddress" type="email" id="email" class="border border-gray-300 rounded-md p-2 w-full" value="" required />
+        </div>
+        
+        <!-- Nationality -->
+        <div class="w-[25%] ">
+            <h1 class="text-2xl font-bold mb-4 mt-4">Nationality</h1>
+            <span id="nationalityError" class="text-red-500 text-sm"></span>
+            <select name="nationality" class="border border-gray-300 rounded-md p-2 w-full" required>
+                <option value="" disabled selected style="color: rgb(144, 161, 185);">-- Select Nationality --</option>
+                <option value="Filipino">Filipino</option>
+                <option value="American">American</option>
+                <option value="Canadian">Canadian</option>
+                <option value="British">British</option>
+                <option value="Australian">Australian</option>
+                <option value="Japanese">Japanese</option>
+            </select>
+        </div>
+
+        <input id="submitBtn" name="submitBtn" type="submit" value="Submit"
+            class="mt-8 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 cursor-pointer" />
     </form>
 </body>
+<script src="app.js"></script>
+
 </html>
