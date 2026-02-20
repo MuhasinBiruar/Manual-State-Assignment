@@ -1,7 +1,7 @@
 document.getElementById("signUp").addEventListener("click", ()=>{
-    document.location.href = "signUp/index.html";
+    document.location.href = "signup/index.html";
 })
 
 document.getElementById("logIn").addEventListener("click", ()=>{
-    document.location.href = "logIn/index.html";
+    document.location.href = "login/index.html";
 })
