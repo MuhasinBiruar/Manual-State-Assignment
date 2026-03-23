@@ -1,16 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
 </head>
-<body class="flex flex-col items-center justify-center h-screen bg-gray-400 gap-2">
-    <h1 class="text-2xl font-bold text-gray-800 mb-10">Welcome user!</h1>
+
+<body
+    class="flex flex-row flex-wrap h-screen w-screen bg-gradient-to-r from-[#579ae8] via-[#b3b5d1] to-[#10cfe0] gap-2 p-4">
+
+    <!-- filters by price range -->
+    <div id="filterContainer" class="w-80">
+        <form id="priceFilterForm" class="flex  flex-col gap-4">
+            <label for="priceRange" class="text-md font-mono font-semibold text-gray-800">Filter by Price
+                Range:</label>
+            <!-- on input replace non-numeric numbers with empty string //TODO: remember to parse &
+                                                                        validate whether max > min-->
+            <div>
+                <input id="minPriceRange" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="border p-1 text-center w-30"
+                    placeholder="min" />
+                <input id="maxPriceRange" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="border p-1 text-center w-30"
+                    placeholder="max" />
+            </div>
+            <!-- Please input valid price range -->
+            <span id="rangeError" class="text-red-500 text-sm font-mono font-extrabold">try</span>
+            <button type="submit" class="bg-[#579ae8] cursor-pointer border text-white px-8 py-3 font-mono rounded-md 
+                hover:bg-[#10cfe0] transition-colors duration-300 w-30 text-sm">
+                Apply
+            </button>
+        </form>
+    </div>
+
+    <h3 id="loading"
+        class="mt-100 ml-75 text-center my-4 hidden self-center text-2xl font-mono font-bold text-blue-600">
+        Loading...
+    </h3>
+    <!-- products -->
+    <section id="productsSection" class="w-full h-full flex flex-wrap gap-4 p-10">
+        <!-- im not sure if it should be in form -->
+        <!-- <div id="productsContainer"
+            class=" bg-white drop-shadow-lg h-100 w-100 rounded-lg self-center flex flex-col p-4 gap-2">
+            <img class="w-full h-50 rounded-lg bg-gray-400" placeholder="image" />
+            <span id="productTitle" class="text-xl font-mono font-semibold">test</span>
+            <span id="productPrice" class="text-xl font-mono font-semibold">test Price</span>
+            <button type="button" class="bg-[#579ae8] cursor-pointer border 
+        text-white px-8 py-3 text-lg rounded-md 
+        hover:bg-[#10cfe0] transition-colors duration-300 self-end font-mono">Add to Cart</button>
+        </div> -->
+    </section>
+
+    <!-- <h1 class="text-2xl font-bold text-gray-800 mb-10">Welcome user!</h1>
     <span id="userInfo" class="text-gray-700 mb-4 font-bold"></span>
     <input type="button" id="logOut" value="Log Out" 
-    class="bg-blue-500 cursor-pointer border text-white px-8 py-3 text-lg rounded-md hover:bg-blue-600 transition-colors duration-300" />
+    class="bg-blue-500 cursor-pointer border text-white px-8 py-3 text-lg rounded-md hover:bg-blue-600 
+    transition-colors duration-300" />  -->
+    <button id="openSidebar" type="button"
+        class="transition-opacity duration-300 ease-in-out cursor-pointer inline-flex items-center p-3 fixed bottom-4 right-4 z-50 text-sm text-gray-500 rounded-lg hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-gray-200 bg-white shadow-lg opacity-100">
+        <span class="sr-only">Open sidebar</span>
+        <- <!-- <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" fill-rule="evenodd"
+                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+            </path>
+            </svg> -->
+    </button>
+
+    <!-- side nav -->
+    <aside id="default-sidebar"
+        class="fixed top-0 right-0 z-40 w-64 h-screen translate-x-full transition-transform duration-300 ease-in-out"
+        aria-label="Sidenav">
+        <div
+            class="overflow-y-auto py-5 px-3 h-full bg-white border-l border-gray-200 dark:bg-gray-800 dark:border-gray-700 gap-4 flex flex-col">
+            <button id="closeSidebar" type="button"
+                class="cursor-pointer text-2xl font-bold text-gray-800 bg-gray-200 hover:bg-gray-300 p-2 rounded transition-colors duration-200 w-10">-></button>
+            <div id="cartContainer" class="flex flex-col gap-4">
+                    <div class="flex flex-row gap-2">
+                        <h2 class="text-xl font-mono font-bold text-white">Cart: </h2>
+                        <span id="cartItems" class="text-white font-bold font-mono text-xl">0</span>
+                    </div>
+                    <label for="itemList" class="text-white font-bold font-mono text-xl">In Cart</label>
+                    <select id="itemList"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="" disabled selected>view items</option>
+                    </select>
+                    <div class="flex flex-row gap-2">
+                        <h2 class="text-xl font-mono font-bold text-white">Total: </h2>
+                        <span id="cartTotal" class="text-white font-bold font-mono text-xl">$0</span>
+                    </div>
+                    <button id="checkoutBtn" type="button"
+                        class="bg-green-500 cursor-pointer border text-white px-8 py-3 text-lg rounded-md hover:bg-green-600
+                        transition-colors duration-300 w-full font-mono">
+                        Checkout
+                    </button>
+            </div>
+
+            <input type="button" id="logOut" value="Log Out" class="bg-blue-500 cursor-pointer border text-white px-8 py-3 text-lg rounded-md hover:bg-blue-600 
+            transition-colors duration-300v self-center" />
+        </div>
+    </aside>
+
+    <!-- Cart Item Management Modal -->
+    <div id="itemModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-80 shadow-lg">
+            <h3 id="modalItemTitle" class="text-xl font-bold mb-4">Manage Item</h3>
+            <div class="flex flex-col gap-3">
+                <button id="addQtyBtn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                    Add Quantity
+                </button>
+                <button id="removeQtyBtn"
+                    class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
+                    Remove Quantity
+                </button>
+                <button id="removeItemBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                    Remove from Cart
+                </button>
+                <button id="closeModalBtn" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
 </body>
+<script type="module" src="cart.js"></script>
 <script type="module" src="app.js"></script>
+
 </html>

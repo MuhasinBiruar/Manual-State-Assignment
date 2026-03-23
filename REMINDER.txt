@@ -1,0 +1,12 @@
+1. BRANCH OUT FROM AUTH ASSIGNMENT
+2. working on /home
+
+{
+"userInfo":"e6u0aebqg@mozmail.com",
+"cart":[{"id":"14","title":"Classic High-Waisted Athletic Shorts","price":"$43","quantity":2},
+       {"id":"15","title":"Classic White Crew Neck T-Shirt","price":"$39","quantity":4},
+       {"id":"13","title":"Classic Olive Chino Shorts","price":"$8","quantity":1}],
+"total":7, *might have to remove*
+"totalPrice":250}
+
+i need setTimeout
