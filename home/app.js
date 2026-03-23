@@ -11,7 +11,8 @@ if (!user) {
     document.location.href = "../index.html";
 }
 
-//document.getElementById("userInfo").textContent = `Username: ${user.username} | Email: ${user.email}`;
+document.getElementById("userEmail").textContent = `Email: ${user.email}`;
+document.getElementById("userName").textContent = `Username: ${user.username}`;
 
 document.getElementById("logOut").addEventListener("click", () => {
     localStorage.removeItem('currentUser');
